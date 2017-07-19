@@ -2,6 +2,7 @@ version: '3'
 
 services:
   ss:
+    build: .
     command: ["-s", "::", "-s", "0.0.0.0", "-p", "8388", "-m", $$SS_Encrypt_method, "-k", $$SS_Passwd]
     ports:
       - "8388:8388"
