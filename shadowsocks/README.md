@@ -13,7 +13,7 @@ docker run -dt --name [your-custom-container-name] -p 8388:8388 ss -s :: -s 0.0.
 The details options for ss-server come after `docker run -dt --name [your-custom-container-name]`, detail usage are reffered to [shadowsocks-libev](https://github.com/shadowsocks/shadowsocks-libev).
 
 ### With docker-compose
+Edit the .env files first to set your encrypt method and passwd
 ```
 docker-compose up -d
 ```
-
