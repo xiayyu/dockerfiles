@@ -7,12 +7,8 @@ services:
     restart: unless-stopped
     volumes:
       - ${STASTIC_FILE_PATH}:/usr/share/nginx/html:ro
-    expose:
-      - "443"
     environment:
       VIRTUAL_HOST: ${DOMAIN_NAME}, www.${DOMAIN_NAME}
-      VIRTUAL_PROTO: https
-      VIRTUAL_PORT: 443
       LETSENCRYPT_HOST: ${DOMAIN_NAME}, www.${DOMAIN_NAME}
       LETSENCRYPT_EMAIL: ${EMIAL}
 
