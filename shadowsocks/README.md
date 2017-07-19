@@ -15,5 +15,6 @@ The details options for ss-server come after `docker run -dt --name [your-custom
 ### With docker-compose
 Edit the .env files first to set your encrypt method and passwd
 ```
+cp .env.example .env
 docker-compose up -d
 ```
