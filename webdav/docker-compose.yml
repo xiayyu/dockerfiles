@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  webdav:
+    container_name: webdav
+    image: idelsink/webdav
+    restart: unless-stopped
+    volumes:
+      - ${WEBDAV_PATH}:/webdav
+    environment:
+      USERNAME: ${WEBDAV_USER}
+      PASSWORD: ${WEBDAV_PW}
+      VIRTUAL_HOST: dav.${DOMAIN_NAME}
+      LETSENCRYPT_HOST: dav.${DOMAIN_NAME}
+      LETSENCRYPT_EMAIL: ${EMIAL}
+
+networks:
+  default:
+    external:
+      name: webproxy
