@@ -1,0 +1,28 @@
+version: '3'
+
+services:
+
+  mysql:
+    image: mariadb
+    restart: unless-stopped
+    volumes:
+      - ${DB_PATH}:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: ${ROOT_PASSWORD}
+
+  owncloud:
+    depends_on:
+      - mysql
+    image: owncloud
+    restart: unless-stopped
+    volumes:
+      - ${OWNCLOUD_PATH}:/var/www/html
+    environment:
+      VIRTUAL_HOST: dav.${DOMAIN_NAME}
+      LETSENCRYPT_HOST: dav.${DOMAIN_NAME}
+      LETSENCRYPT_EMAIL: ${EMIAL}
+
+networks:
+  default:
+    external:
+      name: webproxy
