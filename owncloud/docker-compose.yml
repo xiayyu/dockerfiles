@@ -13,7 +13,7 @@ services:
   owncloud:
     depends_on:
       - mysql
-    image: owncloud
+    build: .
     restart: unless-stopped
     volumes:
       - ${OWNCLOUD_PATH}:/var/www/html
