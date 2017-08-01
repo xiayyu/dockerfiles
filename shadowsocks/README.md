@@ -1,20 +1,16 @@
 # Docker for shadowsocks
 
-Building docker image for [shadowsocks-libev](https://github.com/shadowsocks/shadowsocks-libev) based on apline
+Refer to [shadowsocks/shadowsocks-libev](https://github.com/shadowsocks/shadowsocks-libev/tree/master/docker/alpine)
 
-## Usage
-
-### Without docker-compose
+## Build docker images
 
 ```
-docker build -t [your-custom-image-name] .
-docker run -dt --name [your-custom-container-name] -p 8388:8388 ss -s :: -s 0.0.0.0 -p 8388 -m rc4-md5 -k [passwd] 
+$ curl -sSL https://github.com/shadowsocks/shadowsocks-libev/raw/master/docker/alpine/Dockerfile | docker build -t shadowsocks-libev -
 ```
-The details options for ss-server come after `docker run -dt --name [your-custom-container-name]`, detail usage are reffered to [shadowsocks-libev](https://github.com/shadowsocks/shadowsocks-libev).
 
-### With docker-compose
-Edit the .env files first to set your encrypt method and passwd
+## Run docker container with docker-compose
+
 ```
-cp .env.example .env
 docker-compose up -d
+
 ```
