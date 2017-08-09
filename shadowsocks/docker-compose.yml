@@ -6,4 +6,5 @@ shadowsocks:
   environment:
     - METHOD=rc4-md5
     - PASSWORD=foobar
+    - SERVER_ADDR="["[::0]","0.0.0.0"]"
   restart: unless-stopped
