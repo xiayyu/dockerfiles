@@ -3,14 +3,14 @@ version: '3'
 services:
   blog:
     container_name: blog
-    image: nginx
+    image: nginx:stable-alpine
     restart: unless-stopped
     volumes:
-      - ${STASTIC_FILE_PATH}:/usr/share/nginx/html:ro
+      - ${WEB_FILE_PATH}:/usr/share/nginx/html:ro
     environment:
-      VIRTUAL_HOST: ${DOMAIN_NAME}, www.${DOMAIN_NAME}, blog.${DOMAIN_NAME}
-      LETSENCRYPT_HOST: ${DOMAIN_NAME}, www.${DOMAIN_NAME}, blog.${DOMAIN_NAME}
-      LETSENCRYPT_EMAIL: ${EMIAL}
+      VIRTUAL_HOST: ${WEB_DOMAIN_NAME}, www.${WEB_DOMAIN_NAME}, blog.${WEB_DOMAIN_NAME}
+      LETSENCRYPT_HOST: ${WEB_DOMAIN_NAME}, www.${WEB_DOMAIN_NAME}, blog.${WEB_DOMAIN_NAME}
+      LETSENCRYPT_EMAIL: ${LETSENCRYPT_EMAIL}@${WEB_DOMAIN_NAME}
 
 networks:
   default:
