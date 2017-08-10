@@ -4,7 +4,7 @@ shadowsocks:
     - "8388:8388/tcp"
     - "8388:8388/udp"
   environment:
-    - METHOD=rc4-md5
-    - PASSWORD=foobar
+    - METHOD=${SS_METHOD}
+    - PASSWORD=${SS_PW}
     - ARGS="-s ::"
   restart: unless-stopped
