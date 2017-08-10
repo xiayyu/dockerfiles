@@ -2,18 +2,8 @@ version: '3'
 
 services:
 
-  mysql:
-    image: mariadb
-    restart: unless-stopped
-    volumes:
-      - ${DB_PATH}:/var/lib/mysql
-    environment:
-      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
-
   owncloud:
-    depends_on:
-      - mysql
-    image: owncloud
+    image: owncloud:fpm
     restart: unless-stopped
     volumes:
       - ${OWNCLOUD_PATH}:/var/www/html
