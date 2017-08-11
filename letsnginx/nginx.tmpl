@@ -208,6 +208,8 @@ server {
 	include /etc/nginx/vhost.d/default;
 	{{ end }}
 
+	client_max_body_size 20M;
+
 	location / {
 		{{ if eq $proto "uwsgi" }}
 		include uwsgi_params;
