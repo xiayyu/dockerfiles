@@ -2,14 +2,14 @@ version: '3'
 
 services:
   owncloud:
-    image: owncloud:fpm
-    container_name: ownCloud
+    image: nextcloud
+    container_name: nextcloud
     restart: unless-stopped
     volumes:
-      - ${OWNCLOUD_PATH}:/var/www/html
+      - ${NEXTCLOUD_PATH}:/var/www/html
     environment:
-      VIRTUAL_HOST: dav.${OWNCLOUD_DOMAIN_NAME}
-      LETSENCRYPT_HOST: dav.${OWNCLOUD_DOMAIN_NAME}
+      VIRTUAL_HOST: dav.${NEXTCLOUD_DOMAIN_NAME}
+      LETSENCRYPT_HOST: dav.${NEXTCLOUD_DOMAIN_NAME}
       LETSENCRYPT_EMAIL: ${LETSENCRYPT_EMAIL}
 
 networks:
