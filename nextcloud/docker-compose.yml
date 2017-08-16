@@ -7,31 +7,32 @@ services:
     container_name: nextcloud_db
     restart: unless-stopped
     volumes:
-      - ${DB_PATH}:/var/lib/postgresql/data
+      - nextcloud-db:/var/lib/postgresql/data
     environment:
-      - POSTGRES_PASSWORD=${DB_PW}
+      - POSTGRES_PASSWORD=${NEXTCLOUD_DB_PW}
       - POSTGRES_USER=nextcloud
       - POSTGRES_DB=nextcloud
 
   nextcloud:
-    image: nextcloud:fpm
+    build:
+      context: .
+      dockerfile: Dockerfile.cron
     container_name: nextcloud
     restart: unless-stopped
     links:
       - db    
     volumes:
-      - ${NEXTCLOUD_PATH}:/var/www/html
+      - nextcloud-web:/var/www/html
 
   web:
-    image: nginx:alpine
+    image: nginx:stable-alpine
     container_name: nextcloud_webserver
     restart: unless-stopped
     links:
       - nextcloud
     volumes:
-      - ${NGINX_FILES_PATH}/nginx.conf:/etc/nginx/nginx.conf:ro
-    volumes_from:
-      - nextcloud
+      - ${NEXTCLOUD_CONF_PATH}/nginx.conf:/etc/nginx/nginx.conf:ro
+      - nextcloud-web:/var/www/html
     environment:
       VIRTUAL_HOST: dav.${NEXTCLOUD_DOMAIN_NAME}
       LETSENCRYPT_HOST: dav.${NEXTCLOUD_DOMAIN_NAME}
@@ -46,3 +47,7 @@ networks:
   default:
     external:
       name: nginx-proxy
+
+volumes:
+  nextcloud-web:
+  nextcloud-db:

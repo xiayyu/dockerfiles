@@ -12,9 +12,8 @@ Then, set up the environment vars by edit the `.env` file.
 
 For my example, I set three hosts `${WEB_DOMAIN_NAME}`, `www.${WEB_DOMAIN_NAME}` and `blog.${WEB_DOMAIN_NAME}` to the blog server, you may want to change them.
 
-Before run these docker containers, create the docker volume
+Run these docker containers
 ```
-$ docker volume create blog-sftp
 $ docker-compose up -d
 ```
 Upload you static files via sftp with `port: 2222`, `name: blog` and the `passwd` you have set.  
