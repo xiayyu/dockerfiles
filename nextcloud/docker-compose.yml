@@ -1,16 +1,46 @@
 version: '3'
 
 services:
-  nextcloud:
-    image: nextcloud
-    container_name: nextcloud
+
+  db:
+    image: postgres:alpine
+    container_name: nextcloud_db
     restart: unless-stopped
     volumes:
+      - ${DB_PATH}:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=${DB_PW}
+      - POSTGRES_USER=nextcloud
+      - POSTGRES_DB=nextcloud
+
+  nextcloud:
+    image: nextcloud:fpm
+    container_name: nextcloud
+    restart: unless-stopped
+    links:
+      - db    
+    volumes:
       - ${NEXTCLOUD_PATH}:/var/www/html
+
+  web:
+    image: nginx:alpine
+    container_name: nextcloud_webserver
+    restart: unless-stopped
+    links:
+      - nextcloud
+    volumes:
+      - ${NGINX_FILES_PATH}/nginx.conf:/etc/nginx/nginx.conf:ro
+    volumes_from:
+      - nextcloud
     environment:
       VIRTUAL_HOST: dav.${NEXTCLOUD_DOMAIN_NAME}
       LETSENCRYPT_HOST: dav.${NEXTCLOUD_DOMAIN_NAME}
       LETSENCRYPT_EMAIL: ${LETSENCRYPT_EMAIL}
+
+  redis:
+    image: redis:alpine
+    container_name: redis
+    restart: unless-stopped
 
 networks:
   default:

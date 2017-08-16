@@ -6,13 +6,25 @@ services:
     image: nginx:stable-alpine
     restart: unless-stopped
     volumes:
-      - ${WEB_FILE_PATH}:/usr/share/nginx/html:ro
+      - blog-sftp:/usr/share/nginx/html:ro
     environment:
       VIRTUAL_HOST: ${WEB_DOMAIN_NAME}, www.${WEB_DOMAIN_NAME}, blog.${WEB_DOMAIN_NAME}
       LETSENCRYPT_HOST: ${WEB_DOMAIN_NAME}, www.${WEB_DOMAIN_NAME}, blog.${WEB_DOMAIN_NAME}
       LETSENCRYPT_EMAIL: ${LETSENCRYPT_EMAIL}
 
+  sftp:
+    container_name: blog-sftp
+    image: atmoz/sftp:alpine
+    volumes:
+        - blog-sftp:/home/blog/upload
+    ports:
+        - "2222:22"
+    command: blog:${SFTP_PW}:1001
+
 networks:
   default:
     external:
       name: nginx-proxy
+
+volumes:
+  blog-sftp:
