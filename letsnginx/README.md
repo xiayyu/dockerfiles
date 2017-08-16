@@ -7,9 +7,8 @@ A fork of https://github.com/evertramos/docker-compose-letsencrypt-nginx-proxy-c
 Set up environment var `NGINX_FILES_PATH` to some path by
 ```
 $ cp .env.example .env
-$ vim .env
 ```
-The `.env` file should look like
+And edit the `.env` file
 ```
 NGINX_FILES_PATH=/some/path
 ```

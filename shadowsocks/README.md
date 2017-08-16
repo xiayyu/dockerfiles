@@ -10,7 +10,13 @@ $ curl -sSL https://github.com/shadowsocks/shadowsocks-libev/raw/master/docker/a
 
 ## Run docker container with docker-compose
 
+Set up environment var by
+```
+$ cp .env.example .env
+```
+Edit the `.env` file
+* `SS_METHOD` encrypt method for shadowsocks-libev, check [here](https://github.com/shadowsocks/shadowsocks-libev#usage)
+* `SS_PW` passwd
 ```
 docker-compose up -d
-
 ```
