@@ -14,34 +14,17 @@ services:
       - POSTGRES_DB=nextcloud
 
   nextcloud:
-    build:
-      context: .
-      dockerfile: Dockerfile.cron
+    image: nextcloud
     container_name: nextcloud
     restart: unless-stopped
     links:
       - db    
     volumes:
       - nextcloud-web:/var/www/html
-
-  web:
-    image: nginx:stable-alpine
-    container_name: nextcloud_webserver
-    restart: unless-stopped
-    links:
-      - nextcloud
-    volumes:
-      - ${NEXTCLOUD_CONF_PATH}/nginx.conf:/etc/nginx/nginx.conf:ro
-      - nextcloud-web:/var/www/html
     environment:
       VIRTUAL_HOST: dav.${NEXTCLOUD_DOMAIN_NAME}
       LETSENCRYPT_HOST: dav.${NEXTCLOUD_DOMAIN_NAME}
       LETSENCRYPT_EMAIL: ${LETSENCRYPT_EMAIL}
-
-  redis:
-    image: redis:alpine
-    container_name: redis
-    restart: unless-stopped
 
 networks:
   default:
