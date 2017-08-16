@@ -1,4 +1,4 @@
-# letsnginx
+# Letsnginx
 
 A fork of https://github.com/evertramos/docker-compose-letsencrypt-nginx-proxy-companion, slightly modified for my taste.
 
@@ -29,5 +29,5 @@ Check if containers are running
 ```
 $ docker ps
 ```
-There should be three running containers named `nginx-proxy`, `nginx-gen` and `nginx-letsencrypt`
+There should be three running containers named `nginx-proxy`, `nginx-gen` and `nginx-letsencrypt`  
 For additional usage, check [blog](https://github.com/xiayyu/dockerfiles/tree/master/blog)
