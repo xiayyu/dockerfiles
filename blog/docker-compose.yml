@@ -19,7 +19,7 @@ services:
       - blog-sftp:/home/blog/upload
     ports:
       - "2222:22"
-    command: blog:${SFTP_PW}:1001:100:blog
+    command: blog:${SFTP_PW}:1001:100:upload
 
 networks:
   default:
