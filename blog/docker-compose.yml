@@ -16,10 +16,10 @@ services:
     container_name: blog-sftp
     image: atmoz/sftp:alpine
     volumes:
-        - blog-sftp:/home/blog/upload
+      - blog-sftp:/home/blog/upload
     ports:
-        - "2222:22"
-    command: blog:${SFTP_PW}:1001
+      - "2222:22"
+    command: blog:${SFTP_PW}:1001:100:blog
 
 networks:
   default:
