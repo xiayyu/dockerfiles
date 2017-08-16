@@ -15,6 +15,7 @@ services:
   sftp:
     container_name: blog-sftp
     image: atmoz/sftp:alpine
+    restart: unless-stopped
     volumes:
       - blog-sftp:/home/blog/upload
     ports:
