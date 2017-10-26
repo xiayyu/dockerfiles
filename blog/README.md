@@ -9,6 +9,8 @@ Then, set up the environment vars by edit the `.env` file.
 * `WEB_DOMAIN_NAME` is the domain of you server
 * `LETSENCRYPT_EMAIL` is the email for letsencrypt
 * `SFTP_PW` for sftp passwd
+* `SFTP_VOLUME` is the path for web contents
+* `GID` and `UID` is your mounted volumes with permissions matching your host filesystem.
 
 For my example, I set three hosts `${WEB_DOMAIN_NAME}`, `www.${WEB_DOMAIN_NAME}` and `blog.${WEB_DOMAIN_NAME}` to the blog server, you may want to change them.
 
