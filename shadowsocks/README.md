@@ -4,19 +4,23 @@ Refer to [shadowsocks/shadowsocks-libev](https://github.com/shadowsocks/shadowso
 
 ## Build docker images
 
-```
-$ curl -sSL https://github.com/shadowsocks/shadowsocks-libev/raw/master/docker/alpine/Dockerfile | docker build -t shadowsocks-libev -
+```bash
+curl -sSL https://github.com/shadowsocks/shadowsocks-libev/raw/master/docker/alpine/Dockerfile | docker build -t shadowsocks-libev -
 ```
 
 ## Run docker container with docker-compose
 
 Set up environment var by
+
+```bash
+cp .env.example .env
 ```
-$ cp .env.example .env
-```
+
 Edit the `.env` file
+
 * `SS_METHOD` encrypt method for shadowsocks-libev, check [here](https://github.com/shadowsocks/shadowsocks-libev#usage)
 * `SS_PW` passwd
-```
+
+```bash
 docker-compose up -d
 ```
