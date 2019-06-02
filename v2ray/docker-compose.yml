@@ -1,9 +1,19 @@
-v2ray:
-  image: v2ray/official
-  container_name: v2ray
-  ports:
-    - "${PORT}:${PORT}/tcp"
-    - "${PORT}:${PORT}/udp"
-  volumes:
-    - ${CONFIG}:/etc/v2ray/config.json:ro
-  restart: unless-stopped
+version: '3'
+services:
+  v2ray:
+    image: v2ray/official
+    container_name: v2ray
+    ports:
+      - "80/tcp"
+    volumes:
+      - ${CONFIG}:/etc/v2ray/config.json:ro
+    restart: unless-stopped
+    environment:
+      VIRTUAL_HOST: v2ray.${DOMAIN_NAME}
+      LETSENCRYPT_HOST: v2ray.${DOMAIN_NAME}
+      LETSENCRYPT_EMAIL: ${LETSENCRYPT_EMAIL}
+
+networks:
+  default:
+    external:
+      name: nginx-proxy
