@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+  rtorrent:
+    build:
+      context: ./rtorrent
+    container_name: rtorrent
+    volumes:
+      - "~/rtorrent/:/rtorrent/"
+    ports:
+      - "50000:50000"
+    stdin_open: false
+    tty: true
+
+  flood:
+    build:
+      context: ./flood
+    container_name: flood
+    environment:
+      - FLOOD_ENABLE_SSL=false
+      - RTORRENT_SOCK=false
+      - RTORRENT_SCGI_HOST=rtorrent
+    volumes:
+      - "~/rtorrent/:/rtorrent/"
+    ports:
+      - "3000:3000"

@@ -18,7 +18,7 @@ services:
     container_name: nextcloud
     restart: unless-stopped
     links:
-      - db    
+      - db
     volumes:
       - nextcloud-web:/var/www/html
     environment:
