@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  beehive:
+    image: fribbledom/beehive
+    container_name: beehive
+    expose:
+      - "80/tcp"
+    restart: unless-stopped
+    environment:
+      CANONICAL_URL: http://0.0.0.0:80
+      VIRTUAL_HOST: beehive.${DOMAIN_NAME}
+      LETSENCRYPT_HOST: beehive.${DOMAIN_NAME}
+      LETSENCRYPT_EMAIL: ${LETSENCRYPT_EMAIL}
+
+networks:
+  default:
+    external:
+      name: ${NETWORK}
