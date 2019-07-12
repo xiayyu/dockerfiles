@@ -1,3 +1,7 @@
+# DEPRECATE! 
+
+USE v2ray!
+
 # Docker for shadowsocks
 
 Refer to [shadowsocks/shadowsocks-libev](https://github.com/shadowsocks/shadowsocks-libev/tree/master/docker/alpine)

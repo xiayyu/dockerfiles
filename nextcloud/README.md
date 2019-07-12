@@ -1,3 +1,7 @@
+# DEPRECATE! 
+
+USE [docker-nextcloud-letsencrypt](https://github.com/evertramos/docker-nextcloud-letsencrypt)!
+
 # nextcloud
 
 Use postgres, needs companion with `letsnginx`
