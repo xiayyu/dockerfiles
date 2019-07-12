@@ -4,16 +4,9 @@ services:
   beehive:
     image: fribbledom/beehive
     container_name: beehive
-    expose:
-      - "80/tcp"
+    ports:
+      - "8181:8181"
     restart: unless-stopped
     environment:
-      CANONICAL_URL: http://0.0.0.0:80
-      VIRTUAL_HOST: beehive.${DOMAIN_NAME}
-      LETSENCRYPT_HOST: beehive.${DOMAIN_NAME}
-      LETSENCRYPT_EMAIL: ${LETSENCRYPT_EMAIL}
+      CANONICAL_URL: http://beehive.${DOMAIN_NAME}:8181
 
-networks:
-  default:
-    external:
-      name: ${NETWORK}
